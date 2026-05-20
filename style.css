@@ -467,7 +467,8 @@ input:focus {
     }
 
     .nav-item:hover:not(.active) {
-        display: none;
+        background-color: transparent;
+        color: #909090;
     }
 
     .menu-btn {
