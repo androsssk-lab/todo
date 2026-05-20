@@ -258,10 +258,11 @@ function renderGroups(groupsArray) {
 
         btn.textContent = group.name
         deleteGroupBtn.textContent = "x"
-        headerTitle.textContent = group.name
+        
 
         if (group.id === currentGroup) {
             btn.classList.add("active")
+            headerTitle.textContent = group.name
         }
 
         if (group.id !== 1) {
@@ -304,6 +305,7 @@ function renderGroups(groupsArray) {
             }
 
             sideBar.classList.remove("open")
+            headerTitle.textContent = group.name
 
             updateCounter()
         })
