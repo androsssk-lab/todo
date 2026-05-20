@@ -163,6 +163,8 @@ body {
     opacity: 1;
     pointer-events: all;
     transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(66, 32, 62, 0.4);
+    backdrop-filter: blur(10px);
 }
 
 .action-btn {
