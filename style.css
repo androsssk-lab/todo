@@ -466,6 +466,8 @@ input:focus {
 
     .menu-btn {
         display: flex;
+        outline: none;
+        border: none;
     }
 
     .menu-icon {
