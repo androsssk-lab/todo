@@ -38,8 +38,12 @@ function createToDo(todosArray) {
     toggleEmptyMessage(todosArray)
     todosArray.forEach((todo) => {
         const toDoCard = document.createElement("div")
+
+        const toDoCardText = document.createElement("div")
         const toDoCardTitle = document.createElement("h2")
         const toDoCardDesc = document.createElement("p")
+
+        const toDoCardBtns = document.createElement("div")
         const btnRemove = document.createElement("button")
         const btnComplete = document.createElement("button")
 
@@ -49,13 +53,19 @@ function createToDo(todosArray) {
         btnComplete.textContent = "Complete"
 
         toDoCard.classList.add("todo-card")
+
+        toDoCardText.classList.add("card-text")
         toDoCardTitle.classList.add("card-title")
         toDoCardDesc.classList.add("card-desc")
+
+        toDoCardBtns.classList.add("card-buttons")
         btnRemove.classList.add("card-btn-remove")
         btnComplete.classList.add("card-btn-complete")
 
+        toDoCardText.append(toDoCardTitle, toDoCardDesc)
+        toDoCardBtns.append(btnComplete, btnRemove)
 
-        toDoCard.append(toDoCardTitle, toDoCardDesc, btnRemove, btnComplete)
+        toDoCard.append(toDoCardText, toDoCardBtns)
 
         toDoCards.append(toDoCard)
 
@@ -79,11 +89,18 @@ function createToDo(todosArray) {
         })
 
         btnComplete.addEventListener("click", () => {
-            todo.completed = true
+            todo.completed = !todo.completed
+            if (todo.completed) {
+                btnComplete.textContent = ""
+                btnComplete.textContent = "✓"
+            } else {
+                btnComplete.textContent = ""
+                btnComplete.textContent = "Complete"
+            }
             localStorage.setItem("groups", JSON.stringify(groups))
-            btnComplete.textContent = "°"
             updateCounter()
         })
+
     })
 }
 
@@ -265,7 +282,7 @@ function renderGroups(groupsArray) {
         btn.textContent = group.name
         actionsBtn.textContent = "⋮"
         deleteGroupBtn.textContent = "Delete"
-        
+
 
         if (group.id === currentGroup) {
             btn.classList.add("active")

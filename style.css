@@ -427,7 +427,10 @@ input:focus {
 
 .todo-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
     gap: 8px;
     padding: 16px;
     background-color: rgba(255, 255, 255, 0.02);
@@ -457,7 +460,6 @@ input:focus {
 .todo-card .card-buttons {
     display: flex;
     gap: 8px;
-    margin-top: 8px;
 }
 
 .todo-card button {
