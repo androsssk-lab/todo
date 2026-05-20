@@ -466,6 +466,10 @@ input:focus {
         transform: translateX(0);
     }
 
+    .nav-item:hover:not(.active) {
+        display: none;
+    }
+
     .menu-btn {
         display: flex;
         outline: none;
@@ -483,12 +487,12 @@ input:focus {
         margin-bottom: 16px;
     }
 
-    
+
     .home-content {
         margin-left: 0;
         width: 100%;
     }
-    
+
     .header {
         padding: 0 16px;
     }
