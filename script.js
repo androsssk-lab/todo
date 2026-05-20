@@ -250,14 +250,21 @@ function renderGroups(groupsArray) {
     groupsArray.forEach((group) => {
         const navItem = document.createElement("div")
         const btn = document.createElement("button")
+        const actionsBtn = document.createElement("button")
+        const menu = document.createElement("div")
         const deleteGroupBtn = document.createElement("button")
 
         navItem.classList.add("nav-wrapper")
         btn.classList.add("nav-item")
+        actionsBtn.classList.add("action-btn")
+        menu.classList.add("menu")
         deleteGroupBtn.classList.add("group-delete-btn")
 
+        menu.append(deleteGroupBtn)
+
         btn.textContent = group.name
-        deleteGroupBtn.textContent = "x"
+        actionsBtn.textContent = "⋮"
+        deleteGroupBtn.textContent = "Delete"
         
 
         if (group.id === currentGroup) {
@@ -266,12 +273,16 @@ function renderGroups(groupsArray) {
         }
 
         if (group.id !== 1) {
-            navItem.append(btn, deleteGroupBtn)
+            navItem.append(btn, actionsBtn, menu)
         } else {
             navItem.append(btn)
         }
 
         nav.append(navItem)
+
+        actionsBtn.addEventListener("click", () => {
+            menu.classList.toggle("show")
+        })
 
         deleteGroupBtn.addEventListener("click", () => {
             groups = groups.filter((item) => {
