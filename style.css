@@ -172,7 +172,9 @@ body {
     padding: 16px 12px;
     border-radius: 6px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 8px;
     background-color: rgba(168, 85, 247, 0.1);
     border: 1px solid rgba(168, 85, 247, 0.2);
@@ -476,6 +478,11 @@ input:focus {
         background-color: #e0e0e0;
         border-radius: 2px;
     }
+
+    .counter {
+        margin-bottom: 16px;
+    }
+
     
     .home-content {
         margin-left: 0;
