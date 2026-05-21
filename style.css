@@ -636,6 +636,11 @@ input:focus {
         color: #909090;
     }
 
+    .add-btn {
+        align-self: stretch;
+        width: 100%;
+    }
+
     .menu-btn {
         display: flex;
         outline: none;
