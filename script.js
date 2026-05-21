@@ -28,6 +28,8 @@ let groups = [
     }
 ]
 
+let selectedColor = "purple"
+
 let currentGroup = 1
 
 renderGroups(groups)
@@ -52,7 +54,7 @@ function createToDo(todosArray) {
         btnRemove.textContent = "Remove"
         btnComplete.textContent = "Complete"
 
-        toDoCard.classList.add("todo-card")
+        toDoCard.classList.add("todo-card", todo.color)
 
         toDoCardText.classList.add("card-text")
         toDoCardTitle.classList.add("card-title")
@@ -118,19 +120,49 @@ btnAdd.addEventListener("click", () => {
     const inputTitle = document.createElement("input")
     const inputDesc = document.createElement("input")
     const inputBtns = document.createElement("div")
+    const mainBtns = document.createElement("div")
     const btnSave = document.createElement("button")
     const btnCancel = document.createElement("button")
+
+    const colorPicker = document.createElement("div")
+    const yellowBtn = document.createElement("button")
+    const greenBtn = document.createElement("button")
+    const purpleBtn = document.createElement("button")
+
+    colorPicker.classList.add("color-btns", "yellow")
+    yellowBtn.classList.add("color-btn", "yellow")
+    greenBtn.classList.add("color-btn", "green")
+    purpleBtn.classList.add("color-btn", "purple")
+    
+    yellowBtn.textContent = "yellow"
+    greenBtn.textContent = "green"
+    purpleBtn.textContent = "purple"
+
+    yellowBtn.addEventListener("click", () => {
+        selectedColor = "yellow"
+    })
+    greenBtn.addEventListener("click", () => {
+        selectedColor = "green"
+    })
+    purpleBtn.addEventListener("click", () => {
+        selectedColor = "purple"
+    })
+
+    colorPicker.append(yellowBtn, greenBtn, purpleBtn)
 
     inputItem.classList.add("input")
     inputTitle.classList.add("input-title")
     inputDesc.classList.add("input-desc")
     inputBtns.classList.add("input-btns")
+    mainBtns.classList.add("main-btns")
     btnSave.classList.add("input-btn")
     btnCancel.classList.add("input-btn")
 
     listDesc.classList.add("hide")
 
-    inputBtns.append(btnSave, btnCancel)
+    mainBtns.append(btnSave, btnCancel)
+
+    inputBtns.append(colorPicker, mainBtns)
 
     inputTitle.placeholder = "Neue Aufgabe"
     inputDesc.placeholder = "Beschreibung"
@@ -153,7 +185,8 @@ btnAdd.addEventListener("click", () => {
             title: inputTitle.value,
             desc: inputDesc.value,
             completed: false,
-            groupId: currentGroup
+            groupId: currentGroup,
+            color: selectedColor
         }
 
         inputItem.remove()

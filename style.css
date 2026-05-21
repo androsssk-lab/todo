@@ -381,9 +381,17 @@ input:focus {
 .input-btns {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
     margin-top: 8px;
+}
+
+.main-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
 }
 
 .input-btn {
@@ -434,9 +442,60 @@ input:focus {
     gap: 8px;
     padding: 16px;
     background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid #333;
+    /*     border: 1px solid #333; */
     border-radius: 8px;
     transition: all 0.2s;
+    position: relative;
+
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: #0b0b0b;
+
+}
+
+
+.todo-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: inherit;
+    pointer-events: none;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.todo-card.yellow::before {
+    background: linear-gradient(to right,
+            #FFD54F 0,
+            rgba(255, 213, 79, 0.85) 12%,
+            rgba(255, 213, 79, 0.25) 30%,
+            rgba(255, 213, 79, 0) 58%);
+}
+
+.todo-card.green::before {
+    background: linear-gradient(to right,
+            #66BB6A 0,
+            rgba(102, 187, 106, 0.85) 12%,
+            rgba(102, 187, 106, 0.25) 30%,
+            rgba(102, 187, 106, 0) 58%);
+}
+
+.todo-card.purple::before {
+    background: linear-gradient(to right,
+            #BB86FC 0,
+            rgba(187, 134, 252, 0.85) 12%,
+            rgba(187, 134, 252, 0.25) 30%,
+            rgba(187, 134, 252, 0) 58%);
 }
 
 .todo-card:hover {
@@ -486,6 +545,49 @@ input:focus {
     transform: scale(0.98);
 }
 
+.color-btns {
+    display: flex;
+    gap: 5px;
+}
+
+.color-btn {
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.color-btn.yellow {
+    background-color: #ffd64f3e;
+    color: #100f0fe8;
+}
+
+.color-btn.green {
+    background-color: #66bb6a42;
+    color: #100f0fe8;
+}
+
+.color-btn.purple {
+    background-color: #bb86fc39;
+    color: #100f0fe8;
+}
+
+.color-btn.yellow:focus {
+    outline: 2px solid #ffd54f;
+    color: #ffd54f;
+}
+
+.color-btn.green:focus {
+    outline: 2px solid #66bb6a;
+    color: #66bb6a;
+}
+
+.color-btn.purple:focus {
+    outline: 2px solid #bb86fc;
+    color: #bb86fc;
+}
+
 @media (max-width: 480px) {
     .side-bar {
         transform: translateX(-100%);
@@ -527,5 +629,25 @@ input:focus {
 
     .header {
         padding: 0 16px;
+    }
+
+    .input-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .main-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .color-btns {
+        align-self: center;
+    }
+
+    .color-btn {
+        width: 80px;
     }
 }
