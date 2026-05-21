@@ -139,13 +139,31 @@ btnAdd.addEventListener("click", () => {
     purpleBtn.textContent = "purple"
 
     yellowBtn.addEventListener("click", () => {
+        const allSelected = document.querySelectorAll(".selected")
+
+        allSelected.forEach((item) => {
+            return item.classList.remove("selected")
+        })
         selectedColor = "yellow"
+        yellowBtn.classList.add("selected")
     })
     greenBtn.addEventListener("click", () => {
+        const allSelected = document.querySelectorAll(".selected")
+
+        allSelected.forEach((item) => {
+            return item.classList.remove("selected")
+        })
         selectedColor = "green"
+        greenBtn.classList.add("selected")
     })
     purpleBtn.addEventListener("click", () => {
+        const allSelected = document.querySelectorAll(".selected")
+
+        allSelected.forEach((item) => {
+            return item.classList.remove("selected")
+        })
         selectedColor = "purple"
+        purpleBtn.classList.add("selected")
     })
 
     colorPicker.append(yellowBtn, greenBtn, purpleBtn)

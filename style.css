@@ -503,21 +503,31 @@ input:focus {
     border-color: rgba(168, 85, 247, 0.3);
 }
 
+.card-text {
+    flex: 1;
+    min-width: 0;
+}
+
 .todo-card h2 {
     font-size: 16px;
     font-weight: 600;
     color: #e0e0e0;
     margin: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .todo-card p {
     font-size: 14px;
     color: #909090;
     margin: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .todo-card .card-buttons {
     display: flex;
+    flex-shrink: 0;
     gap: 8px;
 }
 
@@ -553,9 +563,15 @@ input:focus {
 .color-btn {
     width: 50px;
     height: 25px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 3px;
     cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .color-btn.yellow {
@@ -573,19 +589,35 @@ input:focus {
     color: #100f0fe8;
 }
 
-.color-btn.yellow:focus {
-    outline: 2px solid #ffd54f;
+.color-btn.yellow.selected {
+    outline: none;
+    border-color: #ffd54f;
+    background-color: rgba(255, 213, 79, 0.18);
+    box-shadow: 4px 4px 4px 4px rgba(255, 213, 79, 0.12);
     color: #ffd54f;
+    transform: translateY(-1px);
 }
 
-.color-btn.green:focus {
-    outline: 2px solid #66bb6a;
+.color-btn.green.selected {
+    outline: none;
+    border-color: #66bb6a;
+    background-color: rgba(102, 187, 106, 0.18);
+    box-shadow: 4px 4px 4px 4px rgba(102, 187, 106, 0.12);
     color: #66bb6a;
+    transform: translateY(-1px);
 }
 
-.color-btn.purple:focus {
-    outline: 2px solid #bb86fc;
+.color-btn.purple.selected {
+    outline: none;
+    border-color: #bb86fc;
+    background-color: rgba(187, 134, 252, 0.18);
+    box-shadow: 4px 4px 4px 4px rgba(187, 134, 252, 0.12);
     color: #bb86fc;
+    transform: translateY(-1px);
+}
+
+.color-btn:active {
+    transform: translateY(0);
 }
 
 @media (max-width: 480px) {
