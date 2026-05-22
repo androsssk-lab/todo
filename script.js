@@ -115,7 +115,8 @@ function toggleEmptyMessage(todosArray) {
 }
 
 btnAdd.addEventListener("click", () => {
-    const inputs = document.querySelector(".inputs")
+/*                     ПОЛЯ ВВОДА И КНОПКИ
+ */ const inputs = document.querySelector(".inputs")
     const inputItem = document.createElement("div")
     const inputTitle = document.createElement("input")
     const inputDesc = document.createElement("input")
@@ -123,17 +124,21 @@ btnAdd.addEventListener("click", () => {
     const mainBtns = document.createElement("div")
     const btnSave = document.createElement("button")
     const btnCancel = document.createElement("button")
-
-    const colorPicker = document.createElement("div")
+/*                         ВЫБОР ЦВЕТА
+ */ const colorPicker = document.createElement("div")
     const yellowBtn = document.createElement("button")
     const greenBtn = document.createElement("button")
     const purpleBtn = document.createElement("button")
+    /*                             ВЫБОР ГРУППЫ */
+    const groupPicker = document.createElement("div")
+    const groupPickerBtn = document.createElement("button")
+    const groupPickerMenu = document.createElement("div")
 
     colorPicker.classList.add("color-btns", "yellow")
     yellowBtn.classList.add("color-btn", "yellow")
     greenBtn.classList.add("color-btn", "green")
     purpleBtn.classList.add("color-btn", "purple")
-    
+
     yellowBtn.textContent = "yellow"
     greenBtn.textContent = "green"
     purpleBtn.textContent = "purple"
@@ -167,6 +172,35 @@ btnAdd.addEventListener("click", () => {
     })
 
     colorPicker.append(yellowBtn, greenBtn, purpleBtn)
+
+    groupPicker.classList.add("group-picker")
+    groupPickerMenu.classList.add("group-picker-menu")
+    groupPickerBtn.classList.add("group-picker-btn")
+
+    groupPickerBtn.textContent = "Liste"
+
+    groupPickerBtn.addEventListener("click", () => {
+        groupPickerMenu.classList.toggle("show")
+        groupPickerMenu.innerHTML = ""
+        const groupList = document.createElement("div")
+
+        getSelectableGroups().forEach((group) => {
+
+            const groupItem = document.createElement("button")
+
+            groupItem.textContent = group.name
+            groupList.append(groupItem)
+
+            groupItem.addEventListener("click", () => {
+                currentGroup = group.id
+                groupPickerBtn.textContent = group.name
+                groupPickerMenu.classList.remove("show")
+            })
+        })
+
+        groupPickerMenu.append(groupList)
+    })
+    groupPicker.append(groupPickerMenu, groupPickerBtn)
 
     inputItem.classList.add("input")
     inputTitle.classList.add("input-title")
@@ -227,10 +261,16 @@ btnAdd.addEventListener("click", () => {
         inputItem.remove()
     })
 
-    inputItem.append(inputTitle, inputDesc, inputBtns)
+    inputItem.append(inputTitle, inputDesc, inputBtns, groupPicker)
     inputs.append(inputItem)
 
 })
+
+function getSelectableGroups() {
+    return groups.filter((group) => {
+        return group.id !== 1
+    })
+}
 
 function updateCounter() {
     let todosArray = []
