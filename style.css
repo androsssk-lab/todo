@@ -620,6 +620,54 @@ input:focus {
     transform: translateY(0);
 }
 
+.group-picker {
+    position: relative;
+}
+
+.group-picker-btn {
+    height: 32px;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid #404040;
+    border-radius: 6px;
+    color: #909090;
+    cursor: pointer;
+}
+
+.group-picker-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 160px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 6px;
+    z-index: 10;
+}
+
+.group-picker-menu.show {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.group-picker-menu button {
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #909090;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.group-picker-menu button:hover {
+    background: rgba(168, 85, 247, 0.12);
+    color: #a855f7;
+}
+
 @media (max-width: 480px) {
     .side-bar {
         transform: translateX(-100%);
