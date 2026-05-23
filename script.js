@@ -254,6 +254,8 @@ btnAdd.addEventListener("click", () => {
 
         createToDo(selectedGroup.todos)
 
+        renderGroups(groups)
+
         updateCounter()
     })
 
