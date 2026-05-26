@@ -34,11 +34,25 @@ let currentGroup = 1
 
 renderGroups(groups)
 
+function sortToDos(todosArray) {
+    const activeToDos = todosArray.filter((todo) => {
+        return !todo.completed
+    })
+
+    const completedToDos = todosArray.filter((todo) => {
+        return todo.completed
+    })
+
+    return [...activeToDos, ...completedToDos]
+}
+
 /* let todos = [] */
 function createToDo(todosArray) {
     toDoCards.innerHTML = ""
     toggleEmptyMessage(todosArray)
-    todosArray.forEach((todo) => {
+
+    const sortedTodos = sortToDos(todosArray)
+    sortedTodos.forEach((todo) => {
         const toDoCard = document.createElement("div")
 
         const toDoCardText = document.createElement("div")
@@ -113,6 +127,10 @@ function createToDo(todosArray) {
                 btnComplete.textContent = "Complete"
                 toDoCard.classList.remove("completed")
             }
+
+            setTimeout(() => {
+                createToDo(getAlltodos())
+            }, 300)
             localStorage.setItem("groups", JSON.stringify(groups))
             updateCounter()
         })

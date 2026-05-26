@@ -446,7 +446,7 @@ input:focus {
     background-color: rgba(255, 255, 255, 0.02);
     /*     border: 1px solid #333; */
     border-radius: 8px;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     position: relative;
 
     border: 1px solid #2a2a2a;
@@ -456,6 +456,11 @@ input:focus {
 
     background: #0b0b0b;
 
+}
+
+.completed {
+    opacity: 0.6;
+    transform: translateX(15px);
 }
 
 
