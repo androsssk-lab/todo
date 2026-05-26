@@ -71,12 +71,9 @@ body {
     color: #e0e0e0;
 }
 
-.main-title::before {
-    content: '';
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-    border-radius: 8px;
+.logo {
+    width: 120px;
+    height: auto;
 }
 
 .nav-list {
@@ -827,5 +824,9 @@ input:focus {
         max-width: 800px;
         min-height: 120px;
         padding: 15px;
+    }
+
+    .card-text {
+        text-align: center;
     }
 }
