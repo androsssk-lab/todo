@@ -349,6 +349,7 @@ body {
 .input:focus-within {
     border-color: #a855f7;
     background-color: rgba(168, 85, 247, 0.05);
+    caret-color: #a855f7;
 }
 
 input {
@@ -360,6 +361,7 @@ input {
     padding: 8px 0;
     transition: all 0.2s;
     font-family: inherit;
+    caret-color: #a855f7;
 }
 
 input::placeholder {
@@ -531,7 +533,7 @@ input:focus {
     gap: 8px;
 }
 
-.todo-card button {
+.todo-card button:not(.card-btn-edit) {
     height: 32px;
     min-width: 80px;
     background: transparent;
@@ -545,14 +547,30 @@ input:focus {
     transition: all 0.2s;
 }
 
-.todo-card button:hover {
+.todo-card button:not(.card-btn-edit):hover {
     border-color: #a855f7;
     color: #a855f7;
     background-color: rgba(168, 85, 247, 0.1);
+    transform: translateY(-2px);
 }
 
 .todo-card button:active {
     transform: scale(0.98);
+}
+
+.todo-card.completed {
+    opacity: 0.55;
+}
+
+.todo-card.completed .card-title,
+.todo-card.completed .card-desc {
+    text-decoration: line-through;
+}
+
+.todo-card.completed .card-btn-complete {
+    color: #66bb6a;
+    border-color: #66bb6a;
+    background-color: rgba(102, 187, 106, 0.1);
 }
 
 .color-btns {
@@ -668,6 +686,49 @@ input:focus {
     color: #a855f7;
 }
 
+.btn-save-edit {
+    background-color: #66bb6a;
+    border-color: #66bb6a;
+    color: white;
+}
+
+.btn-save-edit:hover {
+    background-color: #66bb6a;
+    border-color: #66bb6a;
+    color: white;
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-cancel-edit {
+    background-color: transparent;
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+}
+
+.btn-cancel-edit:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.card-btn-edit {
+    align-items: center;
+    display: flex;
+    border: none;
+    justify-content: center;
+    background: transparent;
+    color: #909090;
+    cursor: pointer;
+}
+
+.card-btn-edit:hover {
+    color: #a855f7;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 480px) {
     .side-bar {
         transform: translateX(-100%);
@@ -734,5 +795,13 @@ input:focus {
 
     .color-btn {
         width: 80px;
+    }
+
+    .todo-card {
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+        min-height: 120px;
+        padding: 15px;
     }
 }

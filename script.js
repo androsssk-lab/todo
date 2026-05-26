@@ -49,10 +49,15 @@ function createToDo(todosArray) {
         const btnRemove = document.createElement("button")
         const btnComplete = document.createElement("button")
 
+        const btnEdit = document.createElement("button")
+
         toDoCardTitle.textContent = todo.title
         toDoCardDesc.textContent = todo.desc
         btnRemove.textContent = "Remove"
         btnComplete.textContent = "Complete"
+
+        btnEdit.textContent = "Edit"
+        btnEdit.innerHTML =`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bolt-icon lucide-bolt"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg>`
 
         toDoCard.classList.add("todo-card", todo.color)
 
@@ -64,8 +69,10 @@ function createToDo(todosArray) {
         btnRemove.classList.add("card-btn-remove")
         btnComplete.classList.add("card-btn-complete")
 
+        btnEdit.classList.add("card-btn-edit")
+
         toDoCardText.append(toDoCardTitle, toDoCardDesc)
-        toDoCardBtns.append(btnComplete, btnRemove)
+        toDoCardBtns.append(btnComplete, btnRemove, btnEdit)
 
         toDoCard.append(toDoCardText, toDoCardBtns)
 
@@ -90,17 +97,60 @@ function createToDo(todosArray) {
             localStorage.setItem("groups", JSON.stringify(groups))
         })
 
+        if (todo.completed) {
+            btnComplete.textContent = "✓"
+            toDoCard.classList.add("completed")
+        } else {
+            btnComplete.textContent = "Complete"
+        }
+
         btnComplete.addEventListener("click", () => {
             todo.completed = !todo.completed
             if (todo.completed) {
-                btnComplete.textContent = ""
                 btnComplete.textContent = "✓"
+                toDoCard.classList.add("completed")
             } else {
-                btnComplete.textContent = ""
                 btnComplete.textContent = "Complete"
+                toDoCard.classList.remove("completed")
             }
             localStorage.setItem("groups", JSON.stringify(groups))
             updateCounter()
+        })
+
+        btnEdit.addEventListener("click", () => {
+            toDoCardBtns.innerHTML = ""
+            const btnSave = document.createElement("button")
+            const btnCancel = document.createElement("button")
+            const editTitle = document.createElement("input")
+            const editDesc = document.createElement("input")
+
+            editTitle.classList.add("input-title")
+            editDesc.classList.add("input-desc")
+
+            btnSave.classList.add("btn-save-edit")
+            btnCancel.classList.add("btn-cancel-edit")
+            btnSave.textContent = "Save"
+            btnCancel.textContent = "Cancel"
+
+            toDoCardBtns.append(btnSave, btnCancel)
+
+            toDoCardTitle.replaceWith(editTitle)
+            toDoCardDesc.replaceWith(editDesc)
+
+            editTitle.value = todo.title
+            editDesc.value = todo.desc
+
+            btnSave.addEventListener("click", () => {
+                todo.title = editTitle.value
+                todo.desc = editDesc.value
+
+                localStorage.setItem("groups", JSON.stringify(groups))
+                createToDo(todosArray)
+            })
+
+            btnCancel.addEventListener("click", () => {
+                createToDo(todosArray)
+            })
         })
 
     })
