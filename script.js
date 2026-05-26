@@ -11,9 +11,16 @@ const headerTitle = document.querySelector(".header-title")
 
 const sideBar = document.querySelector(".side-bar")
 const menuBtn = document.querySelector(".menu-btn")
+const overlay = document.querySelector(".overlay")
 
 menuBtn.addEventListener("click", () => {
     sideBar.classList.toggle("open")
+    overlay.classList.toggle("show")
+})
+
+overlay.addEventListener("click", () => {
+    sideBar.classList.remove("open")
+    overlay.classList.remove("show")
 })
 
 let groups = [
@@ -494,6 +501,7 @@ function renderGroups(groupsArray) {
             }
 
             sideBar.classList.remove("open")
+            overlay.classList.remove("show")
             headerTitle.textContent = group.name
 
             updateCounter()
