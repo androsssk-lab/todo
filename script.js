@@ -136,7 +136,7 @@ function createToDo(todosArray) {
             }
 
             setTimeout(() => {
-                createToDo(getAlltodos())
+                createToDo(todosArray)
             }, 300)
             localStorage.setItem("groups", JSON.stringify(groups))
             updateCounter()
@@ -190,6 +190,11 @@ function toggleEmptyMessage(todosArray) {
 }
 
 btnAdd.addEventListener("click", () => {
+
+    if (document.querySelector(".input")) {
+        return
+    }
+
 /*                     ПОЛЯ ВВОДА И КНОПКИ
  */ const inputs = document.querySelector(".inputs")
     const inputItem = document.createElement("div")
